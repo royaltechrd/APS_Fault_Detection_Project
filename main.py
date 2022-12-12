@@ -1,25 +1,24 @@
-import pymongo
+from Sensor.exception import SensorException
+from Sensor.utils import get_collection_as_dataframe
+import sys,os
+from Sensor.entity.config_entity import DataIngestionConfig
+from Sensor.entity import config_entity
+from Sensor.components.DataIngestion import DataIngestion
+from Sensor.components.DataValidation import DataValidation
 
-# Provide the mongodb localhost url to connect python to mongodb.
-client = pymongo.MongoClient("mongodb://localhost:27017/neurolabDB")
+if __name__=="__main__":
+     try:
+          training_pipeline_config=config_entity.TrainingPipelineConfig()
+          
+          # Data_Ingestion_Starting
+          data_ingestion_config=DataIngestionConfig(training_pipeline_config)
+          data_ingestion=DataIngestion(data_ingestion_config=data_ingestion_config)
+          data_ingestion_artifact=data_ingestion.initiate_data_ingestion()
+          
+          #Data_Validation_starting
+          data_validation_config=config_entity.DataValidationConfig(training_pipeline_config=training_pipeline_config)
+          data_validation=DataValidation(data_validation_config=data_validation_config,data_ingestion_artifact=data_ingestion_artifact)
+          data_validation_arifact=data_validation.initiate_data_validation()
 
-# Database Name
-dataBase = client["neurolabDB"]
-
-# Collection  Name
-collection = dataBase['Products']
-
-# Sample data
-d = {'companyName': 'iNeuron',
-     'product': 'Affordable AI',
-     'courseOffered': 'Machine Learning with Deployment'}
-
-# Insert above records in the collection
-rec = collection.insert_one(d)
-
-# Lets Verify all the record at once present in the record with all the fields
-all_record = collection.find()
-
-# Printing all records present in the collection
-for idx, record in enumerate(all_record):
-     print(f"{idx}: {record}")
+     except Exception as e:
+          raise SensorException(e, sys)
