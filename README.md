@@ -13,3 +13,10 @@ pip install -r requirements.txt
 ```bash
 python main.py
 ```
+<<<<<<< HEAD
+=======
+
+Git Change made
+
+
+>>>>>>> e9af4cb07718d6f1b4027bf5d626e4ee30f77e9d
