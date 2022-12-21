@@ -3,7 +3,7 @@ import pandas as pd
 import json
 
 # Provide the mongodb localhost url to connect python to mongodb.
-client = pymongo.MongoClient("mongodb://localhost:27017/neurolabDB")
+from Sensor.config import MongoClient
 
 DATA_FILE_PATH='/config/workspace/aps_failure_training_set1.csv'
 DATABASE_NAME='APS'
@@ -18,4 +18,4 @@ if __name__ =='__main__' :
     # Now convert CSV data to Json for Uploading it to MongoDB Dataset 
     jsonData=list(json.loads(data.T.to_json()).values())
 
-    client[DATABASE_NAME][COLLECTION_NAME].insert_many(jsonData)
+    MongoClient[DATABASE_NAME][COLLECTION_NAME].insert_many(jsonData)

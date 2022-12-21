@@ -9,6 +9,7 @@ demotest.py
 logs
 artifacts
 raw_data
+.env
 # Distribution / packaging
 .Python
 build/

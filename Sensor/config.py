@@ -19,3 +19,4 @@ MongoClient = pymongo.MongoClient(env_var.monog_db_url)
 DATA_FILE_PATH='/config/workspace/aps_failure_training_set1.csv'
 DATABASE_NAME='APS'
 COLLECTION_NAME='SENSOR'
+TARGET_COLUMN="class"

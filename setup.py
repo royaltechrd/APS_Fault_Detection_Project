@@ -6,7 +6,8 @@ from typing import List
 REQUIREMENTS_FILENAME="requirements.txt"
 HYPHEN_E_DOT= "-e ."
 
-def get_requirements()->list:
+
+def get_requirements()->List[str]:
     with open(REQUIREMENTS_FILENAME) as requirement_Packages :
         requirement_Packages=requirement_Packages.readlines()
     requirement_list=[requirement_name.replace("/n","") for requirement_name in requirement_Packages]
@@ -17,7 +18,7 @@ def get_requirements()->list:
     return requirement_list
 
 setup(
-    name="sensor",
+    name="Sensor",
     version="0.0.1",
     author="ineuron",
     author_email="prashant886882@gmail.com",
