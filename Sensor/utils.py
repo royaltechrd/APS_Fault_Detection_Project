@@ -99,7 +99,7 @@ def load_numpy_array_data(file_path:str):
             return Exception(f"Sorry but File {file_path} does not Exist")
 
         with open(file_path,"rb") as file_object:
-            numpy_array_data=dill.load(file_object)
+            numpy_array_data=np.load(file_object)
         return numpy_array_data
     except Exception as e :
         raise SensorException(error_message=e, error_detail=sys)

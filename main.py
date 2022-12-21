@@ -6,6 +6,7 @@ from Sensor.entity import config_entity
 from Sensor.components.DataIngestion import DataIngestion
 from Sensor.components.DataValidation import DataValidation
 from Sensor.components.DataTransformation import DataTransformation
+from Sensor.components.ModelTrainer import ModelTrainer
 
 if __name__=="__main__":
      try:
@@ -26,6 +27,12 @@ if __name__=="__main__":
           data_transformation=DataTransformation(data_transformation_config=data_transformation_config,
           data_ingestion_artifact=data_ingestion_artifact)
           data_transformation_artifact=data_transformation.initiate_data_transformation()
+
+          #Model Training 
+          model_trainer_config=config_entity.ModelTrainerConfig(training_pipeline_config=training_pipeline_config)
+          model_trainer=ModelTrainer(model_trainer_config=model_trainer_config,
+           data_transformation_artifact=data_transformation_artifact)
+          model_trainer_artifact=model_trainer.initiate_model_trainer()
 
      except Exception as e:
           raise SensorException(e, sys)
