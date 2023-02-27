@@ -44,20 +44,23 @@ class ModelTrainer:
 
             x_train,y_train=train_arr[:,:1],train_arr[:,-1]
             x_test,y_test=test_arr[:,:1],test_arr[:,-1]
+            logging.info(f"Staring to split the input features and target feature")
 
             model=self.train_model(x=x_train,y=y_train)
             logging.info(f"Now starting to predict the y of Train and test array")
             yhat_train=model.predict(x_train)
             
+            logging.info(f"Calculating f1 train score")
             f1_train_score=f1_score(y_true=y_train,y_pred=yhat_train)
             #Here why we are using the f1_score because we want the Harmonic mean of Precision and recall for this Project 
             # It can be decided on the basis of Requirement of the Project 
             # In General , we use R1_score for the Regression and use f1_score for the Classification
 
             yhat_test=model.predict(x_test)
+            logging.info(f"Calculating f1 test score")
             f1_test_score=f1_score(y_true=y_test,y_pred=yhat_test)
             
-            logging.info(f"Train Score : {f1_train_score} and Test Score :{f1_test_score}")
+            logging.info(f"f1 Train Score : {f1_train_score} and f1 Test Score :{f1_test_score}")
             #Check for underfitting or Overfitting or expected_score
             logging.info(f"Check whether the Model is underfitted or not ")
             if f1_test_score<self.model_trainer_config.expected_score:

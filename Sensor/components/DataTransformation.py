@@ -90,7 +90,8 @@ class DataTransformation():
             data_transformation_artifact=artifact_entity.DataTransformationArtifact(
                 transformed_object_path=self.data_transformation_config.data_transformed_object_path,
                 transformed_train_file_path=self.data_transformation_config.transformed_train_file_path, 
-                transformed_test_file_path=self.data_transformation_config.transformed_test_file_path)
+                transformed_test_file_path=self.data_transformation_config.transformed_test_file_path,
+                target_encoder_path=self.data_transformation_config.target_encoder_path)
             logging.info(f"Returning the Data Transformation Artifact :{data_transformation_artifact}")
             return data_transformation_artifact 
 

@@ -15,6 +15,7 @@ class DataTransformationArtifact:
     transformed_object_path:str
     transformed_train_file_path:str
     transformed_test_file_path:str
+    target_encoder_path:str
 
 @dataclass
 class ModelTrainerArtifact:
@@ -25,6 +26,9 @@ class ModelTrainerArtifact:
 @dataclass
 class ModelEvaluationArtifact:
     is_model_accepted:bool
-    model_Accuracy:float
-                                                                               
-class ModelPusherArtifact:... 
+    improve_Accuracy:float
+
+@dataclass                                                                               
+class ModelPusherArtifact:
+    pusher_model_dir:str
+    saved_model_dir:str
